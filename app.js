@@ -1,4 +1,4 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
+// agrega el array
 let amigos = [];
 
 function agregarAmigo() {
@@ -27,7 +27,7 @@ function agregarAmigo() {
 
      // Limpiar la caja después de agregar el nombre
      amigo.value = "";
-     //console.log (amigos)
+    
 
 }
 
@@ -37,10 +37,28 @@ function sortearAmigo() {
    
     }    
 
-    let amigoSorteado = amigos[Math.floor(Math.random() * amigos.length)];
+    // Obtener un amigo aleatorio
+    let indiceAmigoSorteado = Math.floor(Math.random() * amigos.length);
+    let amigoSorteado = amigos[indiceAmigoSorteado];
+
     let resultado = document.getElementById("resultado");
     resultado.innerHTML = `El amigo sorteado es: ${amigoSorteado}`;
 
+     // Eliminar al amigo sorteado del array
+     amigos.splice(indiceAmigoSorteado, 1);
+
+     // Actualizar la lista de amigos en el HTML
+     let listaAmigos = document.getElementById('listaAmigos');
+     listaAmigos.innerHTML = amigos.map(nombre => `<li>${nombre}</li>`).join('');
+    
+    listaAmigos.innerHTML = '';
 }
 
-    
+// Agregar evento para detectar la tecla "Enter"
+document.getElementById('amigo').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') { 
+     // Llamar a la función para agregar el amigo   
+        agregarAmigo(); 
+
+    }
+})
